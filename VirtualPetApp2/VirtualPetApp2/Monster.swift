@@ -12,7 +12,7 @@ class Monster {
 
     // Declare the monsters variables
     var happiness: Int = 8
-    var hunger: Int = 8
+    var hunger: Int = 8  
     
     
     
