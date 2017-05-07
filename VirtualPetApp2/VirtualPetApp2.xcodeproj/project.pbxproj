@@ -14,6 +14,7 @@
 		5A1348EE1EBF2B25008E2866 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A1348ED1EBF2B25008E2866 /* Assets.xcassets */; };
 		5A1348F11EBF2B25008E2866 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A1348EF1EBF2B25008E2866 /* LaunchScreen.storyboard */; };
 		5A1348F91EBF2BA1008E2866 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1348F81EBF2BA1008E2866 /* Monster.swift */; };
+		5A973D241EBF4D5C00B9819A /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A973D231EBF4D5C00B9819A /* Creature.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		5A1348F01EBF2B25008E2866 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A1348F21EBF2B25008E2866 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A1348F81EBF2BA1008E2866 /* Monster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monster.swift; sourceTree = "<group>"; };
+		5A973D231EBF4D5C00B9819A /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				5A1348E31EBF2B25008E2866 /* AppDelegate.swift */,
 				5A1348E51EBF2B25008E2866 /* ViewController.swift */,
+				5A973D231EBF4D5C00B9819A /* Creature.swift */,
 				5A1348E71EBF2B25008E2866 /* Main.storyboard */,
 				5A1348F81EBF2BA1008E2866 /* Monster.swift */,
 				5A1348ED1EBF2B25008E2866 /* Assets.xcassets */,
@@ -146,6 +149,7 @@
 				5A1348F91EBF2BA1008E2866 /* Monster.swift in Sources */,
 				5A1348EC1EBF2B25008E2866 /* VirtualPetApp2.xcdatamodeld in Sources */,
 				5A1348E61EBF2B25008E2866 /* ViewController.swift in Sources */,
+				5A973D241EBF4D5C00B9819A /* Creature.swift in Sources */,
 				5A1348E41EBF2B25008E2866 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +312,7 @@
 				5A1348F71EBF2B25008E2866 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
