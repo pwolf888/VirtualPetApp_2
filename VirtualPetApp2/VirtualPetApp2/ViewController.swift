@@ -11,6 +11,10 @@ import CoreData
 
 class ViewController: UIViewController {
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    
+    
     var timerSeconds = 0
     let timerSecondsMax = 59
     var timer = Timer()
@@ -18,7 +22,7 @@ class ViewController: UIViewController {
     
     
     
-    var newCreature = Monster(happiness: 8, hunger: 8)
+    var newCreature = Monster()
     
     let tenMinutesFromNow =  10
     let twentyMinutesFromNow =  20
@@ -32,9 +36,21 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        getStats()
         runTimer()
     }
-
+    
+    
+    
+    func getStats() {
+        do {
+            var creatureStats = try (context.fetch(Monster.fetchRequest()) as! [Monster])
+            
+        }
+        catch {}
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -69,23 +85,23 @@ class ViewController: UIViewController {
         switch timerSeconds {
             
         case tenMinutesFromNow:
-            unhappyHungry()
+            //unhappyHungry()
             print("I have pooed once")
             
         case twentyMinutesFromNow:
-            unhappyHungry()
+            //unhappyHungry()
             print("I have pooed twice")
             
         case thirtyMinutesFromNow:
-            unhappyHungry()
+            //unhappyHungry()
             print("I have pooed thrice")
             
         case fortyMinutesFromNow:
-            unhappyHungry()
+            //unhappyHungry()
             print("I have pooed four times")
             
         case fiftyMinutesFromNow:
-            unhappyHungry()
+            //unhappyHungry()
             print("I have pooed 5 times")
             
         default:
@@ -99,12 +115,12 @@ class ViewController: UIViewController {
     }
     
     // A function to reduce the happiness and hunger variables
-    func unhappyHungry() {
+    /*func unhappyHungry() {
         newCreature.happiness -= 1
         newCreature.hunger -= 1
         happinessMeter.text = "\(newCreature.happiness)"
         hungerMeter.text = "\(newCreature.hunger)"
-    }
+    }*/
     
     
     // IBOutlets for UI labels - 8 Happiness etc
@@ -114,22 +130,36 @@ class ViewController: UIViewController {
     
     
     // Button action to pat the creature
-    @IBAction func patBtn(_ sender: UIButton) {
+    /*@IBAction func patBtn(_ sender: UIButton) {
         if newCreature.hunger < 8 {
             newCreature.happiness += 1
             happinessMeter.text = "\(newCreature.happiness)"
             
             
         }
-    }
+    }*/
     
     // Button action to feed the creature
-    @IBAction func feedBtn(_ sender: UIButton) {
+   /* @IBAction func feedBtn(_ sender: UIButton) {
         if newCreature.hunger < 8 {
             newCreature.hunger += 1
             hungerMeter.text = "\(newCreature.hunger)"
         }
-    }
+    }*/
 
+    @IBAction func saveOne(_ sender: Any) {
+        let monster: Monster = NSEntityDescription.insertNewObject(forEntityName: "Monster", into: context) as! Monster
+        monster.hunger = 300
+        monster.happiness = 300
+        
+        
+        
+        
+    }
+    
+    @IBAction func saveTwo(_ sender: Any) {
+        
+        getStats()
+    }
 }
 
