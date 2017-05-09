@@ -7,13 +7,15 @@
 //
 
 import UIKit
-import CoreData
 
 class ViewController: UIViewController {
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    @IBOutlet weak var MonsterSprite: UIImageView!
+    // Can be used to alter te sprite on the scene
+    //MonsterSprite.image = UIImage(named: "baby")
     
-    
+    // Declares the userdefaults standard method for setting and getting
+    let defaults = UserDefaults.standard
     
     var timerSeconds = 0
     let timerSecondsMax = 59
@@ -36,6 +38,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         runTimer()
     }
     
@@ -92,6 +95,7 @@ class ViewController: UIViewController {
             
         case fiftyMinutesFromNow:
             unhappyHungry()
+            
             print("I have pooed 5 times")
             
         default:
