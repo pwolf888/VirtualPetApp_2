@@ -7,15 +7,20 @@
 //
 
 import UIKit
-import CoreData
 
-class Monster: NSManagedObject {
+class Monster {
 
     // Declare the monsters variables
-    //var happiness: Int = 8
-    //var hunger: Int = 8
+    var happiness: Int = 8
+    var hunger: Int = 8  
     
     
     
-    
+    // Initialise the monsters variables
+    init(happiness: Int, hunger: Int) {
+        self.happiness = happiness
+        self.hunger = hunger
+        
+        
+    }
 }

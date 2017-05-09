@@ -10,7 +10,6 @@
 		5A1348E41EBF2B25008E2866 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1348E31EBF2B25008E2866 /* AppDelegate.swift */; };
 		5A1348E61EBF2B25008E2866 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1348E51EBF2B25008E2866 /* ViewController.swift */; };
 		5A1348E91EBF2B25008E2866 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A1348E71EBF2B25008E2866 /* Main.storyboard */; };
-		5A1348EC1EBF2B25008E2866 /* VirtualPetApp2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5A1348EA1EBF2B25008E2866 /* VirtualPetApp2.xcdatamodeld */; };
 		5A1348EE1EBF2B25008E2866 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A1348ED1EBF2B25008E2866 /* Assets.xcassets */; };
 		5A1348F11EBF2B25008E2866 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A1348EF1EBF2B25008E2866 /* LaunchScreen.storyboard */; };
 		5A1348F91EBF2BA1008E2866 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1348F81EBF2BA1008E2866 /* Monster.swift */; };
@@ -21,7 +20,6 @@
 		5A1348E31EBF2B25008E2866 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A1348E51EBF2B25008E2866 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5A1348E81EBF2B25008E2866 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5A1348EB1EBF2B25008E2866 /* VirtualPetApp2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VirtualPetApp2.xcdatamodel; sourceTree = "<group>"; };
 		5A1348ED1EBF2B25008E2866 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A1348F01EBF2B25008E2866 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A1348F21EBF2B25008E2866 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,7 +63,6 @@
 				5A1348ED1EBF2B25008E2866 /* Assets.xcassets */,
 				5A1348EF1EBF2B25008E2866 /* LaunchScreen.storyboard */,
 				5A1348F21EBF2B25008E2866 /* Info.plist */,
-				5A1348EA1EBF2B25008E2866 /* VirtualPetApp2.xcdatamodeld */,
 			);
 			path = VirtualPetApp2;
 			sourceTree = "<group>";
@@ -144,7 +141,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A1348F91EBF2BA1008E2866 /* Monster.swift in Sources */,
-				5A1348EC1EBF2B25008E2866 /* VirtualPetApp2.xcdatamodeld in Sources */,
 				5A1348E61EBF2B25008E2866 /* ViewController.swift in Sources */,
 				5A1348E41EBF2B25008E2866 /* AppDelegate.swift in Sources */,
 			);
@@ -311,19 +307,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		5A1348EA1EBF2B25008E2866 /* VirtualPetApp2.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				5A1348EB1EBF2B25008E2866 /* VirtualPetApp2.xcdatamodel */,
-			);
-			currentVersion = 5A1348EB1EBF2B25008E2866 /* VirtualPetApp2.xcdatamodel */;
-			path = VirtualPetApp2.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 5A1348D81EBF2B25008E2866 /* Project object */;
 }

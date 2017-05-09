@@ -26,18 +26,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Feed"/>
                                 <connections>
-                                    <action selector="feedBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oBr-pr-jj1"/>
+                                    <action selector="feedBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rb1-Dv-k6f"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VfK-eu-ewh">
                                 <rect key="frame" x="95" y="443" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="train"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8i-XJ-yLc">
                                 <rect key="frame" x="235" y="443" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="save"/>
+                                <state key="normal" title="lights"/>
                                 <connections>
                                     <action selector="saveTwo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fw5-jA-2a5"/>
                                 </connections>
@@ -45,7 +45,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M5R-eT-VfV">
                                 <rect key="frame" x="308" y="443" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="SAVE"/>
+                                <state key="normal" title="clean"/>
                                 <connections>
                                     <action selector="saveOne:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wVf-Qa-N7L"/>
                                 </connections>
@@ -55,7 +55,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Love"/>
                                 <connections>
-                                    <action selector="patBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mCp-Og-kxG"/>
+                                    <action selector="patBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b0X-Z8-23S"/>
                                 </connections>
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VrT-2Z-98V">
