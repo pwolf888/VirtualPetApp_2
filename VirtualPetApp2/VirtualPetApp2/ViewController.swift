@@ -34,19 +34,25 @@ class ViewController: UIViewController {
     let sixtyMinutesFromNow = 0
     
     
+    @IBOutlet weak var monsterName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        defaults.set("Jeff" , forKey: "Name")
         runTimer()
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        if let x = defaults.object(forKey: "Name") as? String {
+            monsterName.text = x
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
     }
     
     
