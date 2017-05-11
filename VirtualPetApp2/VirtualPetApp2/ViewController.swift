@@ -21,39 +21,33 @@ class ViewController: UIViewController {
     // Declares the userdefaults standard method for setting and getting
     let defaults = UserDefaults.standard
     
+    // Declaration of timer variables
     var timerSeconds = 0
     let timerSecondsMax = 59
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
     
     var newCreature = Monster(age: 0, happiness: 50, hunger: 50)
-    
-    let tenMinutesFromNow =  10
-    let twentyMinutesFromNow =  20
-    let thirtyMinutesFromNow =  30
-    let fortyMinutesFromNow =  40
-    let fiftyMinutesFromNow =  50
-    let sixtyMinutesFromNow = 0
-    
-    
+
     @IBOutlet weak var monsterName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         runTimer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        happinessMeter.text = "\(newCreature.happiness)"
-        hungerMeter.text = "\(newCreature.hunger)"
-        if let x = defaults.object(forKey: "Name") as? String {
-            monsterName.text = x
+        
+        if let x = defaults.object(forKey: "Hunger") as? Int {
+            hungerMeter.text  = "\(x)"
+        }
+        if let y = defaults.object(forKey: "Happiness") as? Int {
+            hungerMeter.text  = "\(y)"
         }
     }
 
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -77,58 +71,28 @@ class ViewController: UIViewController {
             timerLabel.text = "\(timerSeconds)"
         }
         
-        if timerSeconds % 10 <= 1 {
-            timeCheck()
+        if timerSeconds % 10 < 1 {
+            unhappyHungry()
         }
         
     }
-    
-    // Checks the time in 10 second intervals
-    func timeCheck() {
-        
-        switch timerSeconds {
-            
-        case tenMinutesFromNow:
-            unhappyHungry()
-            print("I have pooed once")
-            
-        case twentyMinutesFromNow:
-            unhappyHungry()
-            print("I have pooed twice")
-            
-        case thirtyMinutesFromNow:
-            unhappyHungry()
-            print("I have pooed thrice")
-            
-        case fortyMinutesFromNow:
-            unhappyHungry()
-            print("I have pooed four times")
-            
-        case fiftyMinutesFromNow:
-            unhappyHungry()
-            
-            print("I have pooed 5 times")
-            
-        default:
-            
-            print("I am thinking about pooing soon")
-    
-            
-        }
-        
-    }
+   
     
     // A function to reduce the happiness and hunger variables
     func unhappyHungry() {
         
         newCreature.hunger -= 1
-        happinessMeter.text = "\(newCreature.happiness)"
-        hungerMeter.text = "\(newCreature.hunger)"
+        //happinessMeter.text = "\(newCreature.happiness)"
+        //hungerMeter.text = "\(newCreature.hunger)"
         
         if newCreature.hunger < 50 {
             newCreature.happiness -= 1
         }
+        
     }
+    
+    // A function to find the difference between the last date accessed and the new date.
+    
     
     
     // IBOutlets for UI labels - 8 Happiness etc
@@ -142,8 +106,7 @@ class ViewController: UIViewController {
         if newCreature.hunger < 100 {
             newCreature.happiness += 1
             happinessMeter.text = "\(newCreature.happiness)"
-            
-            
+            defaults.set("\(happinessMeter)", forKey: "Happiness")
         }
     }
     
@@ -152,12 +115,21 @@ class ViewController: UIViewController {
         if newCreature.hunger < 100 {
             newCreature.hunger += 1
             hungerMeter.text = "\(newCreature.hunger)"
+            defaults.set("\(hungerMeter)", forKey: "Hunger")
         }
     }
-
+    
+    // Jump to the training mini game in the - TrainViewController
     @IBAction func trainBtn(_ sender: UIButton) {
        // Move to second view
     }
     
+    // a light switch for when the monster wants to sleep
+    @IBAction func lightBtn(_ sender: UIButton) {
+    }
+    
+    // A button used to clean the monsters mess
+    @IBAction func cleanBtn(_ sender: UIButton) {
+    }
 }
 

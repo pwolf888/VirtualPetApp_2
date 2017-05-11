@@ -46,7 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         
-        vc.defaults.set("\(vc.newCreature.happiness)", forKey: "Name")
+        vc.defaults.set("\(vc.happinessMeter)", forKey: "Happiness")
+        vc.defaults.set("\(vc.hungerMeter)", forKey: "Hunger")
         self.saveContext()
     }
 
