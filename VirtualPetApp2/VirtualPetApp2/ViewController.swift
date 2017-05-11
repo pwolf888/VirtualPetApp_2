@@ -10,6 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let monsterImage = [UIImage(named: "baby"),
+                        UIImage(named: "toddler"),
+                        UIImage(named: "teen")]
+    
     @IBOutlet weak var MonsterSprite: UIImageView!
     // Can be used to alter te sprite on the scene
     //MonsterSprite.image = UIImage(named: "baby")
@@ -22,9 +26,7 @@ class ViewController: UIViewController {
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
     
-    
-    
-    var newCreature = Monster(happiness: 8, hunger: 8)
+    var newCreature = Monster(age: 0, happiness: 50, hunger: 50)
     
     let tenMinutesFromNow =  10
     let twentyMinutesFromNow =  20
@@ -44,25 +46,22 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        happinessMeter.text = "\(newCreature.happiness)"
+        hungerMeter.text = "\(newCreature.hunger)"
         if let x = defaults.object(forKey: "Name") as? String {
             monsterName.text = x
         }
     }
 
-    
-    func saveMyName(_ animated: Bool) {
-        defaults.set("Alex", forKey:"Name")
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
         
     }
     
-    
+    // A simple timer
     func runTimer() {
-        
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
         isTimerRunning = true
         
@@ -84,6 +83,7 @@ class ViewController: UIViewController {
         
     }
     
+    // Checks the time in 10 second intervals
     func timeCheck() {
         
         switch timerSeconds {
@@ -112,8 +112,7 @@ class ViewController: UIViewController {
         default:
             
             print("I am thinking about pooing soon")
-            
-            
+    
             
         }
         
@@ -121,10 +120,14 @@ class ViewController: UIViewController {
     
     // A function to reduce the happiness and hunger variables
     func unhappyHungry() {
-        newCreature.happiness -= 1
+        
         newCreature.hunger -= 1
         happinessMeter.text = "\(newCreature.happiness)"
         hungerMeter.text = "\(newCreature.hunger)"
+        
+        if newCreature.hunger < 50 {
+            newCreature.happiness -= 1
+        }
     }
     
     
@@ -136,7 +139,7 @@ class ViewController: UIViewController {
     
     // Button action to pat the creature
     @IBAction func patBtn(_ sender: UIButton) {
-        if newCreature.hunger < 8 {
+        if newCreature.hunger < 100 {
             newCreature.happiness += 1
             happinessMeter.text = "\(newCreature.happiness)"
             
@@ -146,11 +149,15 @@ class ViewController: UIViewController {
     
     // Button action to feed the creature
     @IBAction func feedBtn(_ sender: UIButton) {
-        if newCreature.hunger < 8 {
+        if newCreature.hunger < 100 {
             newCreature.hunger += 1
             hungerMeter.text = "\(newCreature.hunger)"
         }
     }
 
+    @IBAction func trainBtn(_ sender: UIButton) {
+       // Move to second view
     }
+    
+}
 

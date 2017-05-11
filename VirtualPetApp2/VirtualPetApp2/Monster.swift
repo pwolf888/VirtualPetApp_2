@@ -11,13 +11,15 @@ import UIKit
 class Monster {
 
     // Declare the monsters variables
-    var happiness: Int = 8
-    var hunger: Int = 8  
+    var age: Int = 0
+    var happiness: Int = 100
+    var hunger: Int = 100
     
     
     
     // Initialise the monsters variables
-    init(happiness: Int, hunger: Int) {
+    init(age: Int, happiness: Int, hunger: Int) {
+        self.age = age
         self.happiness = happiness
         self.hunger = hunger
         
