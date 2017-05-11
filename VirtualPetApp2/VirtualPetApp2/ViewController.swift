@@ -39,7 +39,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        defaults.set("Jeff" , forKey: "Name")
+        
         runTimer()
     }
     
@@ -47,6 +47,11 @@ class ViewController: UIViewController {
         if let x = defaults.object(forKey: "Name") as? String {
             monsterName.text = x
         }
+    }
+
+    
+    func saveMyName(_ animated: Bool) {
+        defaults.set("Alex", forKey:"Name")
     }
     
     override func didReceiveMemoryWarning() {
