@@ -73,6 +73,7 @@ class ViewController: UIViewController {
         
         if timerSeconds % 10 < 1 {
             unhappyHungry()
+            addPoo(Any.self)
         }
         
     }
@@ -130,6 +131,24 @@ class ViewController: UIViewController {
     
     // A button used to clean the monsters mess
     @IBAction func cleanBtn(_ sender: UIButton) {
+        
+    }
+    
+    func addPoo (_ : Any) {
+        let xCoordinate = arc4random() % UInt32(self.view.bounds.width)
+        
+        let poo = UIButton(frame: CGRect(x: Int(xCoordinate), y: 300, width: 50, height: 50))
+        poo.setImage(UIImage(named: "poo"), for: .normal)
+        poo.addTarget(self, action: #selector(self.didCleanPoo(sender:)), for: .touchUpInside)
+        self.view.addSubview(poo)
+        
+    }
+    
+    func didCleanPoo(sender: UIButton) {
+        sender.setImage(UIImage(named : "pop"), for: .normal)
+        UIView.animate(withDuration: 0.4,
+                       animations: {sender.alpha = 0},
+                       completion: { (true) in sender.removeFromSuperview()} )
     }
 }
 
