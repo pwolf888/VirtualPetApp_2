@@ -12,8 +12,9 @@ class TrainViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        
+        
     }
     @IBAction func trainTap(_ sender: UIButton) {
         

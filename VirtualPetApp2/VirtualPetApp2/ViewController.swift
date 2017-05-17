@@ -44,23 +44,28 @@ class ViewController: UIViewController {
         // register an animator
         animator = UIDynamicAnimator(referenceView: self.view)
         gravity = UIGravityBehavior(items: [])
-        
-      
+    
         let vector = CGVector(dx: 0.0, dy: 0.1)
         gravity?.gravityDirection = vector
         animator?.addBehavior(gravity!)
         
         runTimer()
+        let lastOpen = Date()
+        defaults.set(lastOpen, forKey:"LastOpen")
+        defaults.synchronize()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         let x = defaults.integer(forKey: "Hunger")
+            hunger = x
             hungerMeter.text  = "\(x)"
         
         let y = defaults.integer(forKey: "Happiness")
+            happiness = y
             happinessMeter.text  = "\(y)"
         
+        dateChecker()
     }
 
     
@@ -111,6 +116,16 @@ class ViewController: UIViewController {
     }
     
     // A function to find the difference between the last date accessed and the new date.
+    func dateChecker() {
+        let newDate = Date()
+        let lastOpen = defaults.object(forKey: "LastOpen") as? Date ?? Date.distantFuture
+        
+        
+        var timeDifference = lastOpen.timeIntervalSinceReferenceDate
+        timeDifference = timeDifference / 60
+        //timeDifference.round()
+        print(timeDifference)
+    }
     
     
     
@@ -142,7 +157,7 @@ class ViewController: UIViewController {
         
             hunger += 1
             hungerMeter.text = "\(hunger)"
-            defaults.set("\(hungerMeter)", forKey: "Hunger")
+            defaults.set(hunger, forKey: "Hunger")
         }
         defaults.synchronize()
     }
