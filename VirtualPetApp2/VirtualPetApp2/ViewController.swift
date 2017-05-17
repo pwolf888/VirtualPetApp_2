@@ -121,12 +121,21 @@ class ViewController: UIViewController {
         
         let birthDate = defaults.object(forKey: "BirthDate") as? Date
         
-        //print(lastOpen)
-        
         var timeDifference = -birthDate!.timeIntervalSinceNow
-        timeDifference.round()
-        print(timeDifference)
-        
+
+        if timeDifference > 30 {
+            // Reduce the number to a lower value.
+            timeDifference = timeDifference / 30
+            timeDifference.round()
+            
+            print(timeDifference)
+            
+            for _ in 0..<Int(timeDifference) {
+                unhappyHungry()
+                addPoo(Any.self)
+            }
+            
+        }
     }
     
     
