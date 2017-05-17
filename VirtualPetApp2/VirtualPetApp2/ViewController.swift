@@ -10,6 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var gravity : UIGravityBehavior?
+    var animator : UIDynamicAnimator?
+    var hunger: Int = 0
+    var happiness: Int = 0
+    
+    
     let monsterImage = [UIImage(named: "baby"),
                         UIImage(named: "toddler"),
                         UIImage(named: "teen")]
@@ -21,30 +27,40 @@ class ViewController: UIViewController {
     // Declares the userdefaults standard method for setting and getting
     let defaults = UserDefaults.standard
     
+    
     // Declaration of timer variables
     var timerSeconds = 0
     let timerSecondsMax = 59
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
     
-    var newCreature = Monster(age: 0, happiness: 50, hunger: 50)
+    
 
     @IBOutlet weak var monsterName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        // register an animator
+        animator = UIDynamicAnimator(referenceView: self.view)
+        gravity = UIGravityBehavior(items: [])
+        
+      
+        let vector = CGVector(dx: 0.0, dy: 0.1)
+        gravity?.gravityDirection = vector
+        animator?.addBehavior(gravity!)
+        
         runTimer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if let x = defaults.object(forKey: "Hunger") as? Int {
+        let x = defaults.integer(forKey: "Hunger")
             hungerMeter.text  = "\(x)"
-        }
-        if let y = defaults.object(forKey: "Happiness") as? Int {
-            hungerMeter.text  = "\(y)"
-        }
+        
+        let y = defaults.integer(forKey: "Happiness")
+            happinessMeter.text  = "\(y)"
+        
     }
 
     
@@ -82,14 +98,16 @@ class ViewController: UIViewController {
     // A function to reduce the happiness and hunger variables
     func unhappyHungry() {
         
-        newCreature.hunger -= 1
-        //happinessMeter.text = "\(newCreature.happiness)"
-        //hungerMeter.text = "\(newCreature.hunger)"
+        hunger -= 1
+        defaults.set(hunger, forKey: "Hunger")
+        hungerMeter.text = "\(hunger)"
         
-        if newCreature.hunger < 50 {
-            newCreature.happiness -= 1
+        if hunger < 50 {
+            happiness -= 1
+            defaults.set(happiness, forKey: "Happiness")
+            happinessMeter.text = "\(happiness)"
         }
-        
+        defaults.synchronize()
     }
     
     // A function to find the difference between the last date accessed and the new date.
@@ -104,35 +122,36 @@ class ViewController: UIViewController {
     
     // Button action to pat the creature
     @IBAction func patBtn(_ sender: UIButton) {
-        if newCreature.hunger < 100 {
-            newCreature.happiness += 1
-            happinessMeter.text = "\(newCreature.happiness)"
-            defaults.set("\(happinessMeter)", forKey: "Happiness")
+        if hunger < 100 {
+            
+            happiness += 1
+            happinessMeter.text = "\(happiness)"
+            defaults.set(happiness, forKey: "Happiness")
         }
+        defaults.synchronize()
     }
     
     // Button action to feed the creature
     @IBAction func feedBtn(_ sender: UIButton) {
-        if newCreature.hunger < 100 {
-            newCreature.hunger += 1
-            hungerMeter.text = "\(newCreature.hunger)"
+        if hunger < 100 {
+            let food = UIButton(frame: CGRect(x: 100, y: 60, width: 50, height: 50))
+            food.setImage(UIImage(named: "feed"), for: .normal)
+
+            self.view.addSubview(food)
+            gravity?.addItem((food as UIView))
+        
+            hunger += 1
+            hungerMeter.text = "\(hunger)"
             defaults.set("\(hungerMeter)", forKey: "Hunger")
         }
+        defaults.synchronize()
     }
     
-    // Jump to the training mini game in the - TrainViewController
-    @IBAction func trainBtn(_ sender: UIButton) {
-       // Move to second view
-    }
     
     // a light switch for when the monster wants to sleep
     @IBAction func lightBtn(_ sender: UIButton) {
     }
     
-    // A button used to clean the monsters mess
-    @IBAction func cleanBtn(_ sender: UIButton) {
-        
-    }
     
     func addPoo (_ : Any) {
         let xCoordinate = arc4random() % UInt32(self.view.bounds.width)
