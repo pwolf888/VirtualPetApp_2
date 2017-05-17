@@ -15,9 +15,9 @@ class ViewController: UIViewController {
     var hunger: Int = 0
     var happiness: Int = 0
     var age : Int = 0
+    var level : Int = 0
     
-    
-    let monsterImage = [UIImage(named: "baby"),
+    let monsterImages = [UIImage(named: "baby"),
                         UIImage(named: "toddler"),
                         UIImage(named: "teen")]
     
@@ -66,6 +66,7 @@ class ViewController: UIViewController {
             happiness = y
             happinessMeter.text  = "\(y)"
         
+        evolutionCheck()
         dateChecker()
     }
 
@@ -76,6 +77,26 @@ class ViewController: UIViewController {
         
     }
     
+    // Checks the level of the monster and what stage it should be
+    func evolutionCheck() {
+        switch (level) {
+            
+        case 5...9:
+            MonsterObject.setImage(monsterImages[0], for: .normal)
+        case 10...19:
+            MonsterObject.setImage(monsterImages[1], for: .normal)
+            
+        case 20...100:
+            UIView.animate(withDuration: 1) {
+                self.MonsterObject.setImage(self.monsterImages[2], for: .normal)
+                self.MonsterObject.transform = CGAffineTransform(scaleX: 2, y: 2)
+            }
+            
+        default:
+            MonsterObject.setImage(UIImage(named:"egg"), for: .normal)
+            
+        }
+    }
     // A simple timer
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
@@ -145,7 +166,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var hungerMeter: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var MonsterObject: UIButton!
     
+    // temp training game button
+    @IBAction func trainBtn(_ sender: UIButton) {
+        /*UIView.animate(withDuration: 1) {
+            self.MonsterObject.center = CGPoint(x: self.view.bounds.width / 2 , y: self.view.bounds.height / 2 - 100)
+            
+        }*/
+        
+        level += 1
+        levelLabel.text = "\(level)"
+        evolutionCheck()
+        defaults.set(level, forKey: "Level")
+        defaults.synchronize()
+    }
     
     // Button action to pat the creature
     @IBAction func patBtn(_ sender: UIButton) {
@@ -198,11 +234,17 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func Monster(_ sender: UIButton) {
+    }
+    
+    
+    
     @IBAction func STARTBtn(_ sender: UIButton) {
         defaults.set(0, forKey: "Happiness")
         defaults.set(0, forKey: "Hunger")
         defaults.set(Date(), forKey: "BirthDate")
         defaults.set(0, forKey: "Age")
+        defaults.set(0, forKey: "Level")
         
         let x = defaults.integer(forKey: "Hunger")
         hunger = x
@@ -217,10 +259,16 @@ class ViewController: UIViewController {
         let a = defaults.integer(forKey: "Age")
         age = a
         ageLabel.text = "\(a) Yrs"
+        
+        let b = defaults.integer(forKey: "Level")
+        level = b
+        levelLabel.text = "Lvl \(b)"
+        evolutionCheck()
         defaults.synchronize()
         
-        runTimer()
+        
         print(z)
+       
     }
 }
 

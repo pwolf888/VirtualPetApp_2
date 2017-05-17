@@ -8,8 +8,10 @@
 
 import UIKit
 
-class TrainViewController: UIViewController{
-
+class TrainViewController: UIViewController {
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -17,7 +19,7 @@ class TrainViewController: UIViewController{
         
     }
     @IBAction func trainTap(_ sender: UIButton) {
-        
+       
     }
     
     override func didReceiveMemoryWarning() {
