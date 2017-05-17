@@ -50,7 +50,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNZ-Ml-uw5">
-                                <rect key="frame" x="16" y="380" width="70" height="40"/>
+                                <rect key="frame" x="16" y="380" width="114" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
@@ -88,6 +88,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QvH-6w-vWU">
+                                <rect key="frame" x="118" y="79" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <state key="normal" title="START"/>
+                                <connections>
+                                    <action selector="STARTBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aN0-b1-25q"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -95,6 +104,7 @@
                     <navigationItem key="navigationItem" id="eLN-k3-giP"/>
                     <connections>
                         <outlet property="MonsterSprite" destination="ydW-ed-vSc" id="W3j-f5-J8w"/>
+                        <outlet property="ageLabel" destination="tNZ-Ml-uw5" id="tLx-88-kBO"/>
                         <outlet property="happinessMeter" destination="T3E-tx-jBS" id="EQl-4s-48d"/>
                         <outlet property="hungerMeter" destination="zCV-QX-CKd" id="IGr-IA-GX4"/>
                         <outlet property="timerLabel" destination="61n-ZE-oMm" id="SXN-3O-vh1"/>

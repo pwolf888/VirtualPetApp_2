@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     var animator : UIDynamicAnimator?
     var hunger: Int = 0
     var happiness: Int = 0
+    var age : Int = 0
     
     
     let monsterImage = [UIImage(named: "baby"),
@@ -50,9 +51,9 @@ class ViewController: UIViewController {
         animator?.addBehavior(gravity!)
         
         runTimer()
-        let lastOpen = Date()
-        defaults.set(lastOpen, forKey:"LastOpen")
-        defaults.synchronize()
+        //let lastOpen = Date()
+        //defaults.set(lastOpen, forKey:"LastOpen")
+        //defaults.synchronize()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,14 +118,15 @@ class ViewController: UIViewController {
     
     // A function to find the difference between the last date accessed and the new date.
     func dateChecker() {
-        let newDate = Date()
-        let lastOpen = defaults.object(forKey: "LastOpen") as? Date ?? Date.distantFuture
         
+        let birthDate = defaults.object(forKey: "BirthDate") as? Date
         
-        var timeDifference = lastOpen.timeIntervalSinceReferenceDate
-        timeDifference = timeDifference / 60
-        //timeDifference.round()
+        //print(lastOpen)
+        
+        var timeDifference = -birthDate!.timeIntervalSinceNow
+        timeDifference.round()
         print(timeDifference)
+        
     }
     
     
@@ -133,6 +135,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var happinessMeter: UILabel!
     @IBOutlet weak var hungerMeter: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
     
     
     // Button action to pat the creature
@@ -183,6 +186,32 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: 0.4,
                        animations: {sender.alpha = 0},
                        completion: { (true) in sender.removeFromSuperview()} )
+    }
+    
+    
+    @IBAction func STARTBtn(_ sender: UIButton) {
+        defaults.set(0, forKey: "Happiness")
+        defaults.set(0, forKey: "Hunger")
+        defaults.set(Date(), forKey: "BirthDate")
+        defaults.set(0, forKey: "Age")
+        
+        let x = defaults.integer(forKey: "Hunger")
+        hunger = x
+        hungerMeter.text  = "\(x)"
+        
+        let y = defaults.integer(forKey: "Happiness")
+        happiness = y
+        happinessMeter.text  = "\(y)"
+        
+        let z = defaults.object(forKey: "BirthDate")
+        
+        let a = defaults.integer(forKey: "Age")
+        age = a
+        ageLabel.text = "\(a) Yrs"
+        defaults.synchronize()
+        
+        runTimer()
+        print(z)
     }
 }
 
