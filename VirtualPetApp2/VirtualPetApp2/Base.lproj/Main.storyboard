@@ -44,7 +44,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oOa-UW-97W">
                                 <rect key="frame" x="284" y="432" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Love" image="heart-1"/>
+                                <state key="normal" title="Love" image="heart"/>
                                 <connections>
                                     <action selector="patBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b0X-Z8-23S"/>
                                 </connections>
@@ -196,7 +196,7 @@
         <image name="bg" width="320" height="480"/>
         <image name="egg" width="100" height="100"/>
         <image name="feed" width="100" height="100"/>
-        <image name="heart-1" width="100" height="100"/>
+        <image name="heart" width="100" height="100"/>
         <image name="light" width="100" height="100"/>
         <image name="sweep" width="100" height="100"/>
         <image name="train" width="100" height="100"/>

@@ -176,10 +176,10 @@ class ViewController: UIViewController {
     
     // temp training game button
     @IBAction func trainBtn(_ sender: UIButton) {
-        /*UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 1) {
             self.MonsterObject.center = CGPoint(x: self.view.bounds.width / 2 , y: self.view.bounds.height / 2 - 100)
             
-        }*/
+        }
         
         level += 1
         levelLabel.text = "\(level)"
@@ -191,6 +191,11 @@ class ViewController: UIViewController {
     // Button action to pat the creature
     @IBAction func patBtn(_ sender: UIButton) {
         if hunger < 100 {
+            let love = UIButton(frame: CGRect(x: 200, y: 60, width: 50, height: 50))
+            love.setImage(UIImage(named: "heart"), for: .normal)
+            
+            self.view.addSubview(love)
+            gravity?.addItem((love as UIView))
             
             happiness += 1
             happinessMeter.text = "\(happiness)"
