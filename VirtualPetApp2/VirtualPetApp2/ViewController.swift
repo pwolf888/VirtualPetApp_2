@@ -16,14 +16,16 @@ class ViewController: UIViewController {
     var happiness: Int = 0
     var age : Int = 0
     var level : Int = 0
+    var btnArray : [UIButton] = []
     
     let monsterImages = [UIImage(named: "baby"),
                         UIImage(named: "toddler"),
-                        UIImage(named: "teen")]
+                        UIImage(named: "teen"),
+                        UIImage(named: "death")]
     
     @IBOutlet weak var MonsterSprite: UIImageView!
-    // Can be used to alter te sprite on the scene
-    //MonsterSprite.image = UIImage(named: "baby")
+    
+    
     
     // Declares the userdefaults standard method for setting and getting
     let defaults = UserDefaults.standard
@@ -50,10 +52,9 @@ class ViewController: UIViewController {
         gravity?.gravityDirection = vector
         animator?.addBehavior(gravity!)
         
+        dateChecker()
         runTimer()
-        //let lastOpen = Date()
-        //defaults.set(lastOpen, forKey:"LastOpen")
-        //defaults.synchronize()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +68,7 @@ class ViewController: UIViewController {
             happinessMeter.text  = "\(y)"
         
         evolutionCheck()
-        dateChecker()
+        
     }
 
     
@@ -135,6 +136,10 @@ class ViewController: UIViewController {
             happinessMeter.text = "\(happiness)"
         }
         defaults.synchronize()
+        
+        if happiness <= 0 && hunger <= 0 {
+            MonsterObject.setImage(monsterImages[3], for: .normal)
+        }
     }
     
     // A function to find the difference between the last date accessed and the new date.
@@ -223,9 +228,15 @@ class ViewController: UIViewController {
         poo.setImage(UIImage(named: "poo"), for: .normal)
         poo.addTarget(self, action: #selector(self.didCleanPoo(sender:)), for: .touchUpInside)
         self.view.addSubview(poo)
+        btnArray.append(poo)
         
     }
     
+    @IBAction func cleanAllPoo(_ sender: UIButton) {
+        for poo in btnArray {
+            poo.removeFromSuperview()
+        }
+    }
     func didCleanPoo(sender: UIButton) {
         sender.setImage(UIImage(named : "pop"), for: .normal)
         UIView.animate(withDuration: 0.4,
@@ -235,6 +246,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func Monster(_ sender: UIButton) {
+        
     }
     
     

@@ -9,8 +9,9 @@
 import UIKit
 
 class Utilities {
-
     
+    
+    static var usrDef  = UserDefaults.standard
     
 
 

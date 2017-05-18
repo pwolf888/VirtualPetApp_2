@@ -14,6 +14,9 @@ class TrainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var test = Utilities.usrDef
+        
         // Do any additional setup after loading the view.
         
         
