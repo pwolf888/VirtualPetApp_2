@@ -12,11 +12,14 @@ class ViewController: UIViewController {
     
     var gravity : UIGravityBehavior?
     var animator : UIDynamicAnimator?
-    var hunger: Int = 0
-    var happiness: Int = 0
-    var age : Int = 0
-    var level : Int = 0
-    var btnArray : [UIButton] = []
+    
+    // Declares the userdefaults standard method for setting and getting
+    let defaults = Utilities.defaults
+    var happiness = Utilities.happiness
+    var hunger = Utilities.hunger
+    var age = Utilities.age
+    var level = Utilities.level
+    var btnArray = Utilities.btnArray
     
     let monsterImages = [UIImage(named: "baby"),
                         UIImage(named: "toddler"),
@@ -24,12 +27,6 @@ class ViewController: UIViewController {
                         UIImage(named: "death")]
     
     @IBOutlet weak var MonsterSprite: UIImageView!
-    
-    
-    
-    // Declares the userdefaults standard method for setting and getting
-    let defaults = UserDefaults.standard
-    
     
     // Declaration of timer variables
     var timerSeconds = 0
@@ -66,6 +63,10 @@ class ViewController: UIViewController {
         let y = defaults.integer(forKey: "Happiness")
             happiness = y
             happinessMeter.text  = "\(y)"
+        
+        let L = defaults.integer(forKey: "Level")
+        level = L
+        levelLabel.text  = "\(L)"
         
         evolutionCheck()
         
@@ -182,7 +183,7 @@ class ViewController: UIViewController {
         }
         
         level += 1
-        levelLabel.text = "\(level)"
+        levelLabel.text = "lvl\(level)"
         evolutionCheck()
         defaults.set(level, forKey: "Level")
         defaults.synchronize()
@@ -257,8 +258,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func STARTBtn(_ sender: UIButton) {
-        defaults.set(0, forKey: "Happiness")
-        defaults.set(0, forKey: "Hunger")
+        defaults.set(10, forKey: "Happiness")
+        defaults.set(10, forKey: "Hunger")
         defaults.set(Date(), forKey: "BirthDate")
         defaults.set(0, forKey: "Age")
         defaults.set(0, forKey: "Level")

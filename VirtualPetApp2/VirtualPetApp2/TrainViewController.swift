@@ -10,19 +10,24 @@ import UIKit
 
 class TrainViewController: UIViewController {
     
+    //var defaults = Utilities.defaults
+    //var newLevel = Utilities.level
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var test = Utilities.usrDef
-        
         // Do any additional setup after loading the view.
+        
+        
         
         
     }
     @IBAction func trainTap(_ sender: UIButton) {
-       
+        Utilities.defaults.set(Level, forKey: "Level")
+        Utilities.defaults.synchronize()
+        
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
