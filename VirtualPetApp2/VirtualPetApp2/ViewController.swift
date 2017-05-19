@@ -14,12 +14,7 @@ class ViewController: UIViewController {
     var animator : UIDynamicAnimator?
     
     // Declares the userdefaults standard method for setting and getting
-    let defaults = Utilities.defaults
-    var happiness = Utilities.happiness
-    var hunger = Utilities.hunger
-    var age = Utilities.age
-    var level = Utilities.level
-    var btnArray = Utilities.btnArray
+   
     
     let monsterImages = [UIImage(named: "baby"),
                         UIImage(named: "toddler"),
@@ -42,6 +37,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // register an animator
+        Utilities.loadDefaults()
         animator = UIDynamicAnimator(referenceView: self.view)
         gravity = UIGravityBehavior(items: [])
     
@@ -56,17 +52,11 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        let x = defaults.integer(forKey: "Hunger")
-            hunger = x
-            hungerMeter.text  = "\(x)"
+        hungerMeter.text  = "\(Utilities.hunger)"
         
-        let y = defaults.integer(forKey: "Happiness")
-            happiness = y
-            happinessMeter.text  = "\(y)"
+        happinessMeter.text  = "\(Utilities.happiness)"
         
-        let L = defaults.integer(forKey: "Level")
-        level = L
-        levelLabel.text  = "\(L)"
+        levelLabel.text  = "\(Utilities.level)"
         
         evolutionCheck()
         
@@ -81,7 +71,7 @@ class ViewController: UIViewController {
     
     // Checks the level of the monster and what stage it should be
     func evolutionCheck() {
-        switch (level) {
+        switch (Utilities.level) {
             
         case 5...9:
             MonsterObject.setImage(monsterImages[0], for: .normal)
@@ -127,18 +117,17 @@ class ViewController: UIViewController {
     // A function to reduce the happiness and hunger variables
     func unhappyHungry() {
         
-        hunger -= 1
-        defaults.set(hunger, forKey: "Hunger")
-        hungerMeter.text = "\(hunger)"
+        Utilities.hunger -= 1
         
-        if hunger < 50 {
-            happiness -= 1
-            defaults.set(happiness, forKey: "Happiness")
-            happinessMeter.text = "\(happiness)"
+        hungerMeter.text = "\(Utilities.hunger)"
+        
+        if Utilities.hunger < 50 {
+            Utilities.happiness -= 1
+            happinessMeter.text = "\(Utilities.happiness)"
         }
-        defaults.synchronize()
         
-        if happiness <= 0 && hunger <= 0 {
+        
+        if Utilities.happiness <= 0 && Utilities.hunger <= 0 {
             MonsterObject.setImage(monsterImages[3], for: .normal)
         }
     }
@@ -146,9 +135,9 @@ class ViewController: UIViewController {
     // A function to find the difference between the last date accessed and the new date.
     func dateChecker() {
         
-        let birthDate = defaults.object(forKey: "BirthDate") as? Date
         
-        var timeDifference = -birthDate!.timeIntervalSinceNow
+        
+        var timeDifference = -Utilities.birthDate.timeIntervalSinceNow
 
         if timeDifference > 30 {
             // Reduce the number to a lower value.
@@ -182,43 +171,42 @@ class ViewController: UIViewController {
             
         }
         
-        level += 1
-        levelLabel.text = "lvl\(level)"
+        Utilities.level += 1
+        levelLabel.text = "lvl\(Utilities.level)"
         evolutionCheck()
-        defaults.set(level, forKey: "Level")
-        defaults.synchronize()
+        
     }
     
     // Button action to pat the creature
     @IBAction func patBtn(_ sender: UIButton) {
-        if hunger < 100 {
+        if Utilities.hunger < 100 {
             let love = UIButton(frame: CGRect(x: 200, y: 60, width: 50, height: 50))
             love.setImage(UIImage(named: "heart"), for: .normal)
             
             self.view.addSubview(love)
             gravity?.addItem((love as UIView))
             
-            happiness += 1
-            happinessMeter.text = "\(happiness)"
-            defaults.set(happiness, forKey: "Happiness")
+            Utilities.happiness += 1
+            happinessMeter.text = "\(Utilities.happiness)"
+            
         }
-        defaults.synchronize()
+        
     }
     
     // Button action to feed the creature
     @IBAction func feedBtn(_ sender: UIButton) {
-        if hunger < 100 {
+        if Utilities.hunger < 100 {
             let food = UIButton(frame: CGRect(x: 100, y: 60, width: 50, height: 50))
             food.setImage(UIImage(named: "feed"), for: .normal)
 
             self.view.addSubview(food)
             gravity?.addItem((food as UIView))
         
-            hunger += 1
-            hungerMeter.text = "\(hunger)"
-            defaults.set(hunger, forKey: "Hunger")
+            Utilities.hunger += 1
+            hungerMeter.text = "\(Utilities.hunger)"
+            
         }
-        defaults.synchronize()
+        
     }
     
     
@@ -234,12 +222,12 @@ class ViewController: UIViewController {
         poo.setImage(UIImage(named: "poo"), for: .normal)
         poo.addTarget(self, action: #selector(self.didCleanPoo(sender:)), for: .touchUpInside)
         self.view.addSubview(poo)
-        btnArray.append(poo)
+        Utilities.pooArray.append(poo)
         
     }
     
     @IBAction func cleanAllPoo(_ sender: UIButton) {
-        for poo in btnArray {
+        for poo in Utilities.pooArray {
             poo.removeFromSuperview()
         }
     }
@@ -258,35 +246,12 @@ class ViewController: UIViewController {
     
     
     @IBAction func STARTBtn(_ sender: UIButton) {
-        defaults.set(10, forKey: "Happiness")
-        defaults.set(10, forKey: "Hunger")
-        defaults.set(Date(), forKey: "BirthDate")
-        defaults.set(0, forKey: "Age")
-        defaults.set(0, forKey: "Level")
-        
-        let x = defaults.integer(forKey: "Hunger")
-        hunger = x
-        hungerMeter.text  = "\(x)"
-        
-        let y = defaults.integer(forKey: "Happiness")
-        happiness = y
-        happinessMeter.text  = "\(y)"
-        
-        let z = defaults.object(forKey: "BirthDate")
-        
-        let a = defaults.integer(forKey: "Age")
-        age = a
-        ageLabel.text = "\(a) Yrs"
-        
-        let b = defaults.integer(forKey: "Level")
-        level = b
-        levelLabel.text = "Lvl \(b)"
-        evolutionCheck()
-        defaults.synchronize()
-        
-        
-        print(z)
-       
+        Utilities.resetDefaults()
+        hungerMeter.text  = "\(Utilities.hunger)"
+        happinessMeter.text  = "\(Utilities.happiness)"
+        ageLabel.text = "\(Utilities.age) Yrs"
+        levelLabel.text = "Lvl \(Utilities.level)"
+    
     }
 }
 

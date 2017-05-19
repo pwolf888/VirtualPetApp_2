@@ -23,8 +23,8 @@ class TrainViewController: UIViewController {
         
     }
     @IBAction func trainTap(_ sender: UIButton) {
-        Utilities.defaults.set(Level, forKey: "Level")
-        Utilities.defaults.synchronize()
+        Utilities.level += 1
+        
         
         
         
