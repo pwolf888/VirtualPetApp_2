@@ -12,14 +12,8 @@ class ViewController: UIViewController {
     
     var gravity : UIGravityBehavior?
     var animator : UIDynamicAnimator?
-    
-    // Declares the userdefaults standard method for setting and getting
-   
-    
-    let monsterImages = [UIImage(named: "baby"),
-                        UIImage(named: "toddler"),
-                        UIImage(named: "teen"),
-                        UIImage(named: "death")]
+
+    var pooArray : [UIButton] = []
     
     @IBOutlet weak var MonsterSprite: UIImageView!
     
@@ -45,8 +39,13 @@ class ViewController: UIViewController {
         gravity?.gravityDirection = vector
         animator?.addBehavior(gravity!)
         
+        
         dateChecker()
+        
+        
         runTimer()
+       
+        
         
     }
     
@@ -58,6 +57,10 @@ class ViewController: UIViewController {
         
         levelLabel.text  = "\(Utilities.level)"
         
+        for _ in 0..<Utilities.poo {
+            addPoo(Any.self)
+        }
+     
         evolutionCheck()
         
     }
@@ -69,26 +72,7 @@ class ViewController: UIViewController {
         
     }
     
-    // Checks the level of the monster and what stage it should be
-    func evolutionCheck() {
-        switch (Utilities.level) {
-            
-        case 5...9:
-            MonsterObject.setImage(monsterImages[0], for: .normal)
-        case 10...19:
-            MonsterObject.setImage(monsterImages[1], for: .normal)
-            
-        case 20...100:
-            UIView.animate(withDuration: 1) {
-                self.MonsterObject.setImage(self.monsterImages[2], for: .normal)
-                self.MonsterObject.transform = CGAffineTransform(scaleX: 2, y: 2)
-            }
-            
-        default:
-            MonsterObject.setImage(UIImage(named:"egg"), for: .normal)
-            
-        }
-    }
+    
     // A simple timer
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
@@ -128,7 +112,7 @@ class ViewController: UIViewController {
         
         
         if Utilities.happiness <= 0 && Utilities.hunger <= 0 {
-            MonsterObject.setImage(monsterImages[3], for: .normal)
+            MonsterObject.setImage(Utilities.monsterImages[3], for: .normal)
         }
     }
     
@@ -137,7 +121,7 @@ class ViewController: UIViewController {
         
         
         
-        var timeDifference = -Utilities.birthDate.timeIntervalSinceNow
+        var timeDifference = -Utilities.lastOpen.timeIntervalSinceNow
 
         if timeDifference > 30 {
             // Reduce the number to a lower value.
@@ -162,7 +146,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
-    @IBOutlet weak var MonsterObject: UIButton!
+    
+   
+
     
     // temp training game button
     @IBAction func trainBtn(_ sender: UIButton) {
@@ -222,20 +208,25 @@ class ViewController: UIViewController {
         poo.setImage(UIImage(named: "poo"), for: .normal)
         poo.addTarget(self, action: #selector(self.didCleanPoo(sender:)), for: .touchUpInside)
         self.view.addSubview(poo)
-        Utilities.pooArray.append(poo)
+        pooArray.append(poo)
+        Utilities.poo += 1
+        print(Utilities.poo)
+        
         
     }
     
     @IBAction func cleanAllPoo(_ sender: UIButton) {
-        for poo in Utilities.pooArray {
+        for poo in pooArray {
             poo.removeFromSuperview()
         }
+        Utilities.poo = 0
     }
     func didCleanPoo(sender: UIButton) {
         sender.setImage(UIImage(named : "pop"), for: .normal)
         UIView.animate(withDuration: 0.4,
                        animations: {sender.alpha = 0},
                        completion: { (true) in sender.removeFromSuperview()} )
+        Utilities.poo -= 1
     }
     
     
@@ -243,15 +234,40 @@ class ViewController: UIViewController {
         
     }
     
-    
+    @IBOutlet weak var MonsterObject: UIButton!
+    // Checks the level of the monster and what stage it should be
+    func evolutionCheck() {
+        switch (Utilities.level) {
+            
+        case 5...9:
+            MonsterObject.setImage(Utilities.monsterImages[0], for: .normal)
+        case 10...19:
+            MonsterObject.setImage(Utilities.monsterImages[1], for: .normal)
+            
+        case 20...100:
+            UIView.animate(withDuration: 1) {
+                self.MonsterObject.setImage(Utilities.monsterImages[2], for: .normal)
+                self.MonsterObject.transform = CGAffineTransform(scaleX: 2, y: 2)
+            }
+            
+        default:
+            MonsterObject.setImage(UIImage(named:"egg"), for: .normal)
+            
+        }
+    }
     
     @IBAction func STARTBtn(_ sender: UIButton) {
+        isTimerRunning = true
         Utilities.resetDefaults()
         hungerMeter.text  = "\(Utilities.hunger)"
         happinessMeter.text  = "\(Utilities.happiness)"
         ageLabel.text = "\(Utilities.age) Yrs"
         levelLabel.text = "Lvl \(Utilities.level)"
-    
+        evolutionCheck()
+        for poo in pooArray {
+            poo.removeFromSuperview()
+        }
+        pooArray = []
     }
 }
 

@@ -18,16 +18,9 @@ class TrainViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        
-        
-        
     }
     @IBAction func trainTap(_ sender: UIButton) {
         Utilities.level += 1
-        
-        
-        
-        
     }
     
     override func didReceiveMemoryWarning() {

@@ -123,7 +123,7 @@
                     <tabBarItem key="tabBarItem" title="Item" image="egg" id="ZGw-Ld-yRz"/>
                     <navigationItem key="navigationItem" id="eLN-k3-giP"/>
                     <connections>
-                        <outlet property="MonsterObject" destination="TjL-vC-ASN" id="JdU-De-Aw6"/>
+                        <outlet property="MonsterObject" destination="TjL-vC-ASN" id="FTV-UK-6VN"/>
                         <outlet property="ageLabel" destination="tNZ-Ml-uw5" id="tLx-88-kBO"/>
                         <outlet property="happinessMeter" destination="T3E-tx-jBS" id="EQl-4s-48d"/>
                         <outlet property="hungerMeter" destination="zCV-QX-CKd" id="IGr-IA-GX4"/>
