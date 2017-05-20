@@ -60,6 +60,8 @@ class TrainViewController: UIViewController {
         hundred += 1
         hundredLabel.text = "\(hundred)"
         isSixty()
+        
+        // For testing perposes
         Utilities.level += 1
         lvlLabel.text = "LVL\(Utilities.level)"
         evolutionCheck()
@@ -118,6 +120,10 @@ class TrainViewController: UIViewController {
             }
             timerSeconds = 0
             hundred = 0
+            if Utilities.xp >= 100 {
+                Utilities.level = Utilities.xp / 100
+            }
+            lvlLabel.text  = "LVL \(Utilities.level)"
         }
         
     }

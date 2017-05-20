@@ -52,7 +52,7 @@ class ViewController: UIViewController {
         happinessMeter.text  = "\(Utilities.happiness)"
         
         if Utilities.xp >= 100 {
-           // Utilities.level = Utilities.xp / 100
+           Utilities.level = Utilities.xp / 100
         }
         
         ageLabel.text = "\(Utilities.age) yrs"
@@ -83,12 +83,10 @@ class ViewController: UIViewController {
         if isTimerRunning == true {
             if timerSeconds == 59 {
                 timerSeconds = 0
-                timerLabel.text = "\(timerSeconds)"
+                
             } else {
                 timerSeconds += 1
-                timerLabel.text = "\(timerSeconds)"
             }
-        
         
             if timerSeconds % 10 < 1 {
                 unhappyHungry()
