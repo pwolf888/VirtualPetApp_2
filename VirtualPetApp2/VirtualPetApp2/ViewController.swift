@@ -55,7 +55,7 @@ class ViewController: UIViewController {
         happinessMeter.text  = "\(Utilities.happiness)"
         
         if Utilities.xp >= 100 {
-            Utilities.level = Utilities.xp / 100
+           // Utilities.level = Utilities.xp / 100
         }
         
         ageLabel.text = "\(Utilities.age) yrs"
@@ -238,6 +238,14 @@ class ViewController: UIViewController {
         
         switch (Utilities.level) {
             
+        case 0...4:
+            if Utilities.redTrue == true {
+                MonsterObject.setImage(Utilities.splitEvoImages[5], for: .normal)
+            }
+            else if Utilities.greenTrue == true  {
+                MonsterObject.setImage(Utilities.splitEvoImages[4], for: .normal)
+                
+            }
         case 5...9:
             MonsterObject.setImage(Utilities.monsterImages[0], for: .normal)
             
@@ -250,7 +258,7 @@ class ViewController: UIViewController {
                 MonsterObject.setImage(Utilities.splitEvoImages[2], for: .normal)
                 
             }
-            else if Utilities.blueTrue == true {
+            else {
                 MonsterObject.setImage(Utilities.monsterImages[1], for: .normal)
                 
             }
@@ -264,16 +272,15 @@ class ViewController: UIViewController {
                 MonsterObject.setImage(Utilities.splitEvoImages[3], for: .normal)
                 
             }
-            else if Utilities.blueTrue == true {
+            else  {
                 MonsterObject.setImage(Utilities.monsterImages[2], for: .normal)
                 
             }
             
         default:
-            MonsterObject.setImage(UIImage(named:"egg"), for: .normal)
-            
+            MonsterObject.setImage(UIImage(named: "egg"), for: .normal)
         }
-        
+
     }
     
     // Make a new monster
@@ -284,10 +291,24 @@ class ViewController: UIViewController {
         happinessMeter.text  = "\(Utilities.happiness)"
         ageLabel.text = "\(Utilities.age) Yrs"
         levelLabel.text = "Lvl \(Utilities.level)"
-        evolutionCheck()
+        
         for poo in pooArray {
             poo.removeFromSuperview()
         }
+        let colorMonster = arc4random() % UInt32(3)
+        
+        switch (colorMonster) {
+        case 1:
+            Utilities.greenTrue = true
+        
+        case 2:
+            Utilities.redTrue = true
+        
+        default:
+            Utilities.blueTrue = true
+            
+        }
+        evolutionCheck()
         pooArray = []
     }
 }

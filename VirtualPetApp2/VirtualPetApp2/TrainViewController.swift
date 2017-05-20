@@ -59,6 +59,7 @@ class TrainViewController: UIViewController {
         hundredLabel.text = "\(hundred)"
         isHundred()
         Utilities.level += 1
+        lvlLabel.text = "LVL\(Utilities.level)"
         evolutionCheck()
     }
     
@@ -141,7 +142,15 @@ class TrainViewController: UIViewController {
     func evolutionCheck() {
         
         switch (Utilities.level) {
-            
+        
+        case 0...4:
+            if Utilities.redTrue == true {
+                MonsterObject.setImage(Utilities.splitEvoImages[5], for: .normal)
+            }
+            else if Utilities.greenTrue == true  {
+                MonsterObject.setImage(Utilities.splitEvoImages[4], for: .normal)
+                
+            }
         case 5...9:
             MonsterObject.setImage(Utilities.monsterImages[0], for: .normal)
             
@@ -154,7 +163,7 @@ class TrainViewController: UIViewController {
                 MonsterObject.setImage(Utilities.splitEvoImages[2], for: .normal)
                 
             }
-            else if Utilities.blueTrue == true {
+            else {
                 MonsterObject.setImage(Utilities.monsterImages[1], for: .normal)
                 
             }
@@ -168,14 +177,13 @@ class TrainViewController: UIViewController {
                 MonsterObject.setImage(Utilities.splitEvoImages[3], for: .normal)
                 
             }
-            else if Utilities.blueTrue == true {
+            else {
                 MonsterObject.setImage(Utilities.monsterImages[2], for: .normal)
                 
             }
             
         default:
-            MonsterObject.setImage(UIImage(named:"egg"), for: .normal)
-            
+            MonsterObject.setImage(UIImage(named: "egg"), for: .normal)
         }
         
     }

@@ -33,7 +33,9 @@ class Utilities {
     static let splitEvoImages = [UIImage(named: "todred"),
                                   UIImage(named: "teenred"),
                                   UIImage(named: "todgreen"),
-                                  UIImage(named: "teengreen")]
+                                  UIImage(named: "teengreen"),
+                                  UIImage(named: "eggG"),
+                                  UIImage(named: "eggR")]
     
     static func loadDefaults() {
         
