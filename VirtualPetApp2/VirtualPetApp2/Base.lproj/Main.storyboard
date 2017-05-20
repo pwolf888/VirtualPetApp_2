@@ -198,6 +198,85 @@
             </objects>
             <point key="canvasLocation" x="3300" y="124.58770614692655"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="MeT-c5-Oxh">
+            <objects>
+                <viewController id="ZnY-6P-Eyo" customClass="openingViewController" customModule="VirtualPetApp2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nQg-IB-4Qd"/>
+                        <viewControllerLayoutGuide type="bottom" id="vtH-yz-4Zx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="shX-zi-nCJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="Y1G-Kc-CGa">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XPa-GS-Rta">
+                                <rect key="frame" x="0.0" y="28" width="188" height="191"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="eggG"/>
+                                <connections>
+                                    <action selector="green:" destination="ZnY-6P-Eyo" eventType="touchUpInside" id="rsn-ut-GoW"/>
+                                    <segue destination="L8U-6g-8oW" kind="popoverPresentation" popoverAnchorView="XPa-GS-Rta" id="sKW-LM-2jG">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ip-8O-MSe">
+                                <rect key="frame" x="187" y="28" width="188" height="191"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="egg"/>
+                                <connections>
+                                    <action selector="blue:" destination="ZnY-6P-Eyo" eventType="touchUpInside" id="TdT-io-iWz"/>
+                                    <segue destination="L8U-6g-8oW" kind="popoverPresentation" popoverAnchorView="4ip-8O-MSe" id="ufX-6D-m0M">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGy-GS-7o0">
+                                <rect key="frame" x="93" y="227" width="188" height="191"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="eggR"/>
+                                <connections>
+                                    <action selector="red:" destination="ZnY-6P-Eyo" eventType="touchUpInside" id="YpV-y4-7da"/>
+                                    <segue destination="L8U-6g-8oW" kind="popoverPresentation" popoverAnchorView="oGy-GS-7o0" id="m6m-eT-Rgj">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select an Egg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpH-P4-e5o">
+                                <rect key="frame" x="137" y="436" width="106" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svh-ms-Xag">
+                                <rect key="frame" x="182" y="483" width="16" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Return to a previous one" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIH-fh-giW">
+                                <rect key="frame" x="99" y="536" width="187" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="ZrM-id-H3a"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2EG-o4-oTW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1564" y="853.22338830584715"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="H3Z-IE-6GF">
             <objects>
@@ -209,23 +288,29 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="ZnY-6P-Eyo" kind="relationship" relationship="viewControllers" id="hOY-gt-MtS"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="1xc-QD-Oqe"/>
                         <segue destination="uxS-Lq-CvX" kind="relationship" relationship="viewControllers" id="KcV-C5-IE9"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X3D-nx-FRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1344.8" y="124.58770614692655"/>
+            <point key="canvasLocation" x="730" y="125"/>
         </scene>
     </scenes>
     <resources>
         <image name="1" width="100" height="100"/>
         <image name="bg" width="320" height="480"/>
         <image name="egg" width="100" height="100"/>
+        <image name="eggG" width="134" height="191"/>
+        <image name="eggR" width="134" height="191"/>
         <image name="feed" width="100" height="100"/>
         <image name="heart" width="100" height="100"/>
         <image name="light" width="100" height="100"/>
         <image name="sweep" width="100" height="100"/>
         <image name="train" width="100" height="100"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ufX-6D-m0M"/>
+    </inferredMetricsTieBreakers>
 </document>

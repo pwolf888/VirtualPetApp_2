@@ -20,13 +20,20 @@ class Utilities {
     static var birthDate : Date = Date()
     static var lastOpen : Date = Date()
     static var xp : Int = 0
+    static var greenTrue : Bool = false
+    static var redTrue : Bool = false
+    static var blueTrue : Bool = false
+    
     
     static let monsterImages = [UIImage(named: "baby"),
                                 UIImage(named: "toddler"),
                                 UIImage(named: "teen"),
                                 UIImage(named: "death")]
     
-   
+    static let splitEvoImages = [UIImage(named: "todred"),
+                                  UIImage(named: "teenred"),
+                                  UIImage(named: "todgreen"),
+                                  UIImage(named: "teengreen")]
     
     static func loadDefaults() {
         
@@ -39,7 +46,10 @@ class Utilities {
         birthDate = (defaults.object(forKey: "BirthDate") as? Date)!
         lastOpen = (defaults.object(forKey: "LastOpen") as? Date)!
         xp = defaults.integer(forKey: "Xp")
-        
+        greenTrue = defaults.bool(forKey: "Green")
+        redTrue = defaults.bool(forKey: "Red")
+        blueTrue = defaults.bool(forKey: "Blue")
+
     }
     
     static func saveDefaults() {
@@ -51,6 +61,9 @@ class Utilities {
         defaults.set(birthDate, forKey:"BirthDate")
         defaults.set(lastOpen, forKey:"LastOpen")
         defaults.set(xp, forKey: "Xp")
+        defaults.set(greenTrue, forKey: "Green")
+        defaults.set(blueTrue, forKey: "Blue")
+        defaults.set(redTrue, forKey: "Red")
         defaults.synchronize()
     }
     
@@ -63,6 +76,9 @@ class Utilities {
         birthDate = Date()
         lastOpen = Date()
         xp = 0
+        greenTrue = false
+        redTrue  = false
+        blueTrue = false
         saveDefaults()
 
     }

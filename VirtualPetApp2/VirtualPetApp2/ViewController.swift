@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         levelLabel.text  = "LVL \(Utilities.level)"
         
         
-     
+      
         evolutionCheck()
         
     }
@@ -104,6 +104,7 @@ class ViewController: UIViewController {
     }
    
     
+    
     // A function to reduce the happiness and hunger variables
     func unhappyHungry() {
         
@@ -114,13 +115,14 @@ class ViewController: UIViewController {
         if Utilities.hunger < 50 {
             Utilities.happiness -= 1
             happinessMeter.text = "\(Utilities.happiness)"
+            
         }
-        
         
         if Utilities.happiness <= 0 && Utilities.hunger <= 0 {
             MonsterObject.setImage(Utilities.monsterImages[3], for: .normal)
             isTimerRunning = false
         }
+        
     }
     
     // A function to find the difference between the last date accessed and the new date.
@@ -233,20 +235,45 @@ class ViewController: UIViewController {
     @IBOutlet weak var MonsterObject: UIButton!
     // Checks the level of the monster and what stage it should be
     func evolutionCheck() {
+        
         switch (Utilities.level) {
             
         case 5...9:
             MonsterObject.setImage(Utilities.monsterImages[0], for: .normal)
+            
         case 10...19:
-            MonsterObject.setImage(Utilities.monsterImages[1], for: .normal)
+            if Utilities.redTrue == true {
+                MonsterObject.setImage(Utilities.splitEvoImages[0], for: .normal)
+                
+            }
+            else if Utilities.greenTrue == true  {
+                MonsterObject.setImage(Utilities.splitEvoImages[2], for: .normal)
+                
+            }
+            else if Utilities.blueTrue == true {
+                MonsterObject.setImage(Utilities.monsterImages[1], for: .normal)
+                
+            }
             
         case 20...100:
-            MonsterObject.setImage(Utilities.monsterImages[2], for: .normal)
+            
+            if Utilities.redTrue == true {
+                MonsterObject.setImage(Utilities.splitEvoImages[1], for: .normal)
+            }
+            else if Utilities.greenTrue == true  {
+                MonsterObject.setImage(Utilities.splitEvoImages[3], for: .normal)
+                
+            }
+            else if Utilities.blueTrue == true {
+                MonsterObject.setImage(Utilities.monsterImages[2], for: .normal)
+                
+            }
             
         default:
             MonsterObject.setImage(UIImage(named:"egg"), for: .normal)
             
         }
+        
     }
     
     // Make a new monster

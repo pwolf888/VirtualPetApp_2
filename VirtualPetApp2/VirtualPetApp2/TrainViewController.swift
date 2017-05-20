@@ -45,11 +45,13 @@ class TrainViewController: UIViewController {
         let vector = CGVector(dx: -5.0, dy: 0.0)
         gravity?.gravityDirection = vector
         animator?.addBehavior(gravity!)
+        
         runTimer()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         lvlLabel.text = "LVL\(Utilities.level)"
+        evolutionCheck()
     }
     
     @IBAction func trainTap(_ sender: UIButton) {
@@ -91,6 +93,7 @@ class TrainViewController: UIViewController {
                     addFireball(fireImage: fireBalls[2]!)
                     breakWall(sender: Wall, imageIndex: brickWall[3]!)
                     message.text = "Awesome! 20XP"
+                    
                 case 11...15:
                 // do this
                     Utilities.xp += 15
@@ -136,21 +139,45 @@ class TrainViewController: UIViewController {
     
     // Checks the level of the monster and what stage it should be
     func evolutionCheck() {
+        
         switch (Utilities.level) {
             
         case 5...9:
             MonsterObject.setImage(Utilities.monsterImages[0], for: .normal)
+            
         case 10...19:
-            MonsterObject.setImage(Utilities.monsterImages[1], for: .normal)
+            if Utilities.redTrue == true {
+                MonsterObject.setImage(Utilities.splitEvoImages[0], for: .normal)
+                
+            }
+            else if Utilities.greenTrue == true  {
+                MonsterObject.setImage(Utilities.splitEvoImages[2], for: .normal)
+                
+            }
+            else if Utilities.blueTrue == true {
+                MonsterObject.setImage(Utilities.monsterImages[1], for: .normal)
+                
+            }
             
         case 20...100:
-            MonsterObject.setImage(Utilities.monsterImages[2], for: .normal)
+            
+            if Utilities.redTrue == true {
+                MonsterObject.setImage(Utilities.splitEvoImages[1], for: .normal)
+            }
+            else if Utilities.greenTrue == true  {
+                MonsterObject.setImage(Utilities.splitEvoImages[3], for: .normal)
+                
+            }
+            else if Utilities.blueTrue == true {
+                MonsterObject.setImage(Utilities.monsterImages[2], for: .normal)
+                
+            }
             
         default:
             MonsterObject.setImage(UIImage(named:"egg"), for: .normal)
             
         }
+        
     }
-    
     
 }
