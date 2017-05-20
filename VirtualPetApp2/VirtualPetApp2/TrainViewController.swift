@@ -24,8 +24,8 @@ class TrainViewController: UIViewController {
     @IBOutlet weak var hundredLabel: UILabel!
     
     @IBOutlet weak var Wall: UIButton!
-    @IBOutlet weak var MonsterObject: UIImageView!
     
+    @IBOutlet weak var MonsterObject: UIButton!
     let brickWall = [UIImage(named:"1"),
                      UIImage(named:"2"),
                      UIImage(named:"3"),
@@ -56,6 +56,8 @@ class TrainViewController: UIViewController {
         hundred += 1
         hundredLabel.text = "\(hundred)"
         isHundred()
+        Utilities.level += 1
+        evolutionCheck()
     }
     
     override func didReceiveMemoryWarning() {
@@ -131,6 +133,23 @@ class TrainViewController: UIViewController {
         
     }
     
+    // Checks the level of the monster and what stage it should be
+    func evolutionCheck() {
+        switch (Utilities.level) {
+            
+        case 5...9:
+            MonsterObject.setImage(Utilities.monsterImages[0], for: .normal)
+        case 10...19:
+            MonsterObject.setImage(Utilities.monsterImages[1], for: .normal)
+            
+        case 20...100:
+            MonsterObject.setImage(Utilities.monsterImages[2], for: .normal)
+            
+        default:
+            MonsterObject.setImage(UIImage(named:"egg"), for: .normal)
+            
+        }
+    }
     
     
 }

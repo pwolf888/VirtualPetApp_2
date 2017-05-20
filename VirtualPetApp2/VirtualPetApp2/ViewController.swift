@@ -152,7 +152,7 @@ class ViewController: UIViewController {
     
     // Button action to pat the creature
     @IBAction func patBtn(_ sender: UIButton) {
-        if Utilities.hunger < 100 {
+        if Utilities.happiness < 100 {
             let love = UIButton(frame: CGRect(x: 200, y: 60, width: 50, height: 50))
             love.setImage(UIImage(named: "heart"), for: .normal)
             
@@ -232,10 +232,7 @@ class ViewController: UIViewController {
             MonsterObject.setImage(Utilities.monsterImages[1], for: .normal)
             
         case 20...100:
-            UIView.animate(withDuration: 1) {
-                self.MonsterObject.setImage(Utilities.monsterImages[2], for: .normal)
-                self.MonsterObject.transform = CGAffineTransform(scaleX: 2, y: 2)
-            }
+            MonsterObject.setImage(Utilities.monsterImages[2], for: .normal)
             
         default:
             MonsterObject.setImage(UIImage(named:"egg"), for: .normal)
@@ -243,6 +240,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // Make a new monster
     @IBAction func STARTBtn(_ sender: UIButton) {
         isTimerRunning = true
         Utilities.resetDefaults()
