@@ -163,10 +163,27 @@
                                 <rect key="frame" x="259" y="226" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKw-ei-0a0">
+                                <rect key="frame" x="159" y="177" width="152" height="94"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="71"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Df7-QP-wcf">
+                                <rect key="frame" x="1" y="177" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="1"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" image="train" id="hch-y8-9qN"/>
+                    <connections>
+                        <outlet property="MonsterObject" destination="lbw-mP-dt0" id="Y56-5Q-hbs"/>
+                        <outlet property="Wall" destination="Df7-QP-wcf" id="O1V-xk-Ag1"/>
+                        <outlet property="hundredLabel" destination="fKw-ei-0a0" id="nhN-YX-r7f"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2EA-tf-KgM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -193,6 +210,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="1" width="100" height="100"/>
         <image name="bg" width="320" height="480"/>
         <image name="egg" width="100" height="100"/>
         <image name="feed" width="100" height="100"/>

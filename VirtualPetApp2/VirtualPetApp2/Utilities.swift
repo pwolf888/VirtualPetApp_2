@@ -19,7 +19,8 @@ class Utilities {
     static var poo : Int = 0
     static var birthDate : Date = Date()
     static var lastOpen : Date = Date()
-    static var Monster : UIButton = UIButton()
+    static var xp : Int = 0
+    
     static let monsterImages = [UIImage(named: "baby"),
                                 UIImage(named: "toddler"),
                                 UIImage(named: "teen"),
@@ -37,7 +38,7 @@ class Utilities {
         poo = defaults.integer(forKey: "Poo")
         birthDate = (defaults.object(forKey: "BirthDate") as? Date)!
         lastOpen = (defaults.object(forKey: "LastOpen") as? Date)!
-        
+        xp = defaults.integer(forKey: "Xp")
         
     }
     
@@ -49,6 +50,7 @@ class Utilities {
         defaults.set(poo, forKey: "Poo")
         defaults.set(birthDate, forKey:"BirthDate")
         defaults.set(lastOpen, forKey:"LastOpen")
+        defaults.set(xp, forKey: "Xp")
         defaults.synchronize()
     }
     
@@ -60,15 +62,11 @@ class Utilities {
         poo = 0
         birthDate = Date()
         lastOpen = Date()
-        
+        xp = 0
         saveDefaults()
 
     }
     
-    static func addMonster() {
-        Monster = UIButton(frame: CGRect(x: 200, y: 60, width: 100, height: 100))
-        Monster.setImage(UIImage(named: "egg"), for: .normal)
-        
-    }
+    
        
 }

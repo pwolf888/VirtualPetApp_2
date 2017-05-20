@@ -92,9 +92,10 @@ class ViewController: UIViewController {
         
         if timerSeconds % 10 < 1 {
             unhappyHungry()
+        }
+        if timerSeconds % 30 < 1 {
             addPoo(Any.self)
         }
-        
     }
    
     
