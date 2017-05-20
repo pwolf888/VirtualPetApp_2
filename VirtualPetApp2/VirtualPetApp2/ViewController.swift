@@ -124,7 +124,7 @@ class ViewController: UIViewController {
         
         var timeDifference = -Utilities.lastOpen.timeIntervalSinceNow
 
-        if timeDifference > 30 {
+        if timeDifference > 200 {
             // Reduce the number to a lower value.
             timeDifference = timeDifference / 30
             timeDifference.round()

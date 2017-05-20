@@ -35,7 +35,7 @@ class TrainViewController: UIViewController {
         animator = UIDynamicAnimator(referenceView: self.view)
         gravity = UIGravityBehavior(items: [])
         
-        let vector = CGVector(dx: -0.8, dy: 0.0)
+        let vector = CGVector(dx: -5.0, dy: 0.0)
         gravity?.gravityDirection = vector
         animator?.addBehavior(gravity!)
         runTimer()
@@ -67,24 +67,24 @@ class TrainViewController: UIViewController {
     }
     
     func isHundred() {
-        if hundred == 20 {
+        if hundred == 60 {
             
             switch (timerSeconds) {
                 case 0...10 :
                 // do this
                     Utilities.xp += 20
                     addFireball()
-                    breakWall(sender: Wall)
-                    addBrickWall()
+                    breakWall(sender: Wall, imageIndex: brickWall[3]!)
                 case 11...15:
                 // do this
                     Utilities.xp += 15
                     addFireball()
-                case 16...17:
+                    breakWall(sender: Wall, imageIndex: brickWall[2]!)
+                case 16...18:
                 // do this
+                    addFireball()
                     Utilities.xp += 10
-                case 18...19:
-                    Utilities.xp += 5
+                    breakWall(sender: Wall, imageIndex: brickWall[1]!)
                     default:
                         Utilities.xp -= 5
             }
@@ -103,25 +103,16 @@ class TrainViewController: UIViewController {
         
     }
     
-    func breakWall(sender: UIButton) {
+    func breakWall(sender: UIButton, imageIndex: UIImage) {
         
-        UIView.animate(withDuration: 1.0,
+        UIView.animate(withDuration: 2.0,
                        animations: {sender.alpha = 0},
-                       completion: { (true) in sender.setBackgroundImage(self.brickWall[3], for: .normal)} )
-        //sender.setBackgroundImage(brickWall[3], for: .normal)
-        UIView.animate(withDuration: 1.0,
+                       completion: { (true) in sender.setBackgroundImage(imageIndex, for: .normal)} )
+        
+        UIView.animate(withDuration: 2.0,
                        animations: {sender.alpha = 1},
                        completion: { (true) in sender.setBackgroundImage(self.brickWall[0], for: .normal)} )
         //sender.setBackgroundImage(brickWall[0], for: .normal)
     }
     
-    func addBrickWall() {
-        
-        
-        
-        /*let Wall = UIButton(frame: CGRect(x: 1, y: 177, width: 150, height: 150))
-        Wall.setBackgroundImage(brickWall[0], for: .normal)
-        self.view.addSubview(Wall)*/
-
-    }
 }
