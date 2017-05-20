@@ -17,7 +17,7 @@ class TrainViewController: UIViewController {
     var timerSeconds = 0
     let timerSecondsMax = 19
     var timer = Timer()
-
+    
     @IBOutlet weak var lvlLabel: UILabel!
     
     @IBOutlet weak var message: UILabel!
@@ -66,6 +66,7 @@ class TrainViewController: UIViewController {
     }
     
     func runTimer() {
+        
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
         
         

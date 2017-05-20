@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
     
     var gravity : UIGravityBehavior?
@@ -21,7 +22,7 @@ class ViewController: UIViewController {
     var timerSeconds = 0
     let timerSecondsMax = 59
     var timer = Timer()
-    var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
+    var isTimerRunning = false
     
     
 
@@ -44,8 +45,6 @@ class ViewController: UIViewController {
         
         
         runTimer()
-       
-        
         
     }
     
@@ -59,7 +58,7 @@ class ViewController: UIViewController {
             Utilities.level = Utilities.xp / 100
         }
         
-        
+        ageLabel.text = "\(Utilities.age) yrs"
         levelLabel.text  = "LVL \(Utilities.level)"
         
         
@@ -85,19 +84,22 @@ class ViewController: UIViewController {
     }
     
     func updateTimer() {
-        if timerSeconds == 59 {
-            timerSeconds = 0
-            timerLabel.text = "\(timerSeconds)"
-        } else {
-            timerSeconds += 1
-            timerLabel.text = "\(timerSeconds)"
-        }
+        if isTimerRunning == true {
+            if timerSeconds == 59 {
+                timerSeconds = 0
+                timerLabel.text = "\(timerSeconds)"
+            } else {
+                timerSeconds += 1
+                timerLabel.text = "\(timerSeconds)"
+            }
         
-        if timerSeconds % 10 < 1 {
-            unhappyHungry()
-        }
-        if timerSeconds % 30 < 1 {
-            addPoo(Any.self)
+        
+            if timerSeconds % 10 < 1 {
+                unhappyHungry()
+            }
+            if timerSeconds % 30 < 1 {
+                addPoo(Any.self)
+            }
         }
     }
    
@@ -117,11 +119,17 @@ class ViewController: UIViewController {
         
         if Utilities.happiness <= 0 && Utilities.hunger <= 0 {
             MonsterObject.setImage(Utilities.monsterImages[3], for: .normal)
+            isTimerRunning = false
         }
     }
     
     // A function to find the difference between the last date accessed and the new date.
     func dateChecker() {
+        
+        var ageCheck = -Utilities.birthDate.timeIntervalSinceNow
+        ageCheck = ageCheck / 60
+        ageCheck.round()
+        Utilities.age = Int(ageCheck)
         
         var timeDifference = -Utilities.lastOpen.timeIntervalSinceNow
 
@@ -138,6 +146,7 @@ class ViewController: UIViewController {
             }
             
         }
+        
     }
     
     
