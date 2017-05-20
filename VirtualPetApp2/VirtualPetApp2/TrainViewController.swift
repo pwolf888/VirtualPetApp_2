@@ -9,7 +9,8 @@
 import UIKit
 
 class TrainViewController: UIViewController {
-
+    
+    // Declared variables.
     var gravity : UIGravityBehavior?
     var animator : UIDynamicAnimator?
     var collision : UICollisionBehavior?
@@ -18,19 +19,20 @@ class TrainViewController: UIViewController {
     let timerSecondsMax = 19
     var timer = Timer()
     
+    // IBOutlets for Labels
     @IBOutlet weak var lvlLabel: UILabel!
-    
     @IBOutlet weak var message: UILabel!
     @IBOutlet weak var hundredLabel: UILabel!
-    
     @IBOutlet weak var Wall: UIButton!
-    
     @IBOutlet weak var MonsterObject: UIButton!
+    
+    // bricwall images
     let brickWall = [UIImage(named:"1"),
                      UIImage(named:"2"),
                      UIImage(named:"3"),
                      UIImage(named:"4")]
     
+    // Fireball images
     let fireBalls = [UIImage(named:"fireballs1"),
                       UIImage(named:"fireballs2"),
                       UIImage(named:"fireballs3")]
@@ -53,11 +55,11 @@ class TrainViewController: UIViewController {
         lvlLabel.text = "LVL\(Utilities.level)"
         evolutionCheck()
     }
-    
+    // Tap the button to play the mini game, get up to 60 as fast as possible
     @IBAction func trainTap(_ sender: UIButton) {
         hundred += 1
         hundredLabel.text = "\(hundred)"
-        isHundred()
+        isSixty()
         Utilities.level += 1
         lvlLabel.text = "LVL\(Utilities.level)"
         evolutionCheck()
@@ -68,6 +70,7 @@ class TrainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Simple timer
     func runTimer() {
         
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
@@ -75,6 +78,7 @@ class TrainViewController: UIViewController {
         
     }
     
+    // Update the timer
     func updateTimer() {
         if timerSeconds == timerSecondsMax {
             timerSeconds = 0
@@ -84,7 +88,8 @@ class TrainViewController: UIViewController {
         }
     }
     
-    func isHundred() {
+    // Checks the timing of the training minigame and what wall to break and points given out.
+    func isSixty() {
         if hundred == 10 {
             
             switch (timerSeconds) {
@@ -117,6 +122,7 @@ class TrainViewController: UIViewController {
         
     }
     
+    // Depending on the timing of the shot a different fireball image is chosen
     func addFireball(fireImage: UIImage) {
         let fireball = UIButton(frame: CGRect(x: 300, y: 250, width: 50, height: 50))
         fireball.setImage(fireImage, for: .normal)
@@ -126,6 +132,7 @@ class TrainViewController: UIViewController {
         
     }
     
+    // Animates the wall when the monster shoots at it
     func breakWall(sender: UIButton, imageIndex: UIImage) {
         
         UIView.animate(withDuration: 2.0,
@@ -141,14 +148,19 @@ class TrainViewController: UIViewController {
     // Checks the level of the monster and what stage it should be
     func evolutionCheck() {
         
+        // Checks if the colorTrue variables, and choose the right image to display.
         switch (Utilities.level) {
-        
+            
         case 0...4:
             if Utilities.redTrue == true {
                 MonsterObject.setImage(Utilities.splitEvoImages[5], for: .normal)
             }
             else if Utilities.greenTrue == true  {
                 MonsterObject.setImage(Utilities.splitEvoImages[4], for: .normal)
+                
+            }
+            else if Utilities.blueTrue == true  {
+                MonsterObject.setImage(UIImage(named: "egg"), for: .normal)
                 
             }
         case 5...9:
@@ -163,7 +175,7 @@ class TrainViewController: UIViewController {
                 MonsterObject.setImage(Utilities.splitEvoImages[2], for: .normal)
                 
             }
-            else {
+            else if Utilities.blueTrue == true {
                 MonsterObject.setImage(Utilities.monsterImages[1], for: .normal)
                 
             }
@@ -177,13 +189,13 @@ class TrainViewController: UIViewController {
                 MonsterObject.setImage(Utilities.splitEvoImages[3], for: .normal)
                 
             }
-            else {
+            else if Utilities.blueTrue == true  {
                 MonsterObject.setImage(Utilities.monsterImages[2], for: .normal)
                 
             }
             
         default:
-            MonsterObject.setImage(UIImage(named: "egg"), for: .normal)
+            MonsterObject.setImage(UIImage(named: "poo"), for: .normal)
         }
         
     }

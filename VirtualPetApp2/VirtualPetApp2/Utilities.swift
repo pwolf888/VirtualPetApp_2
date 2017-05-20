@@ -10,7 +10,7 @@ import UIKit
 
 class Utilities {
     
-    
+    // Declaration of static variables
     private static var defaults  = UserDefaults.standard
     static var hunger: Int = 0
     static var happiness: Int = 0
@@ -24,19 +24,20 @@ class Utilities {
     static var redTrue : Bool = false
     static var blueTrue : Bool = false
     
-    
+    // Evolution for the blue Monster
     static let monsterImages = [UIImage(named: "baby"),
                                 UIImage(named: "toddler"),
                                 UIImage(named: "teen"),
                                 UIImage(named: "death")]
     
+    // Evolution images for red and green monster
     static let splitEvoImages = [UIImage(named: "todred"),
                                   UIImage(named: "teenred"),
                                   UIImage(named: "todgreen"),
                                   UIImage(named: "teengreen"),
                                   UIImage(named: "eggG"),
                                   UIImage(named: "eggR")]
-    
+    // Load function
     static func loadDefaults() {
         
         hunger = defaults.integer(forKey: "Hunger")
@@ -54,6 +55,8 @@ class Utilities {
 
     }
     
+    
+    // Save function
     static func saveDefaults() {
         defaults.set(hunger, forKey: "Hunger")
         defaults.set(happiness, forKey: "Happiness")
@@ -69,6 +72,8 @@ class Utilities {
         defaults.synchronize()
     }
     
+    
+    // Reset function
     static func resetDefaults() {
         hunger = 10
         happiness = 10

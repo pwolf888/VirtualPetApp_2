@@ -11,11 +11,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // Adds gravity
     var gravity : UIGravityBehavior?
     var animator : UIDynamicAnimator?
 
-    var pooArray : [UIButton] = []
-    
     @IBOutlet weak var MonsterSprite: UIImageView!
     
     // Declaration of timer variables
@@ -23,16 +22,15 @@ class ViewController: UIViewController {
     let timerSecondsMax = 59
     var timer = Timer()
     var isTimerRunning = false
-    
-    
+    var pooArray : [UIButton] = []
 
     @IBOutlet weak var monsterName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        // register an animator
+        // Load the user defaults when the view loads
         Utilities.loadDefaults()
+        
         animator = UIDynamicAnimator(referenceView: self.view)
         gravity = UIGravityBehavior(items: [])
     
@@ -40,10 +38,9 @@ class ViewController: UIViewController {
         gravity?.gravityDirection = vector
         animator?.addBehavior(gravity!)
         
-        
+        // Checks the date to add things to the stage
         dateChecker()
-        
-        
+        // Starts the timer
         runTimer()
         
     }
@@ -60,9 +57,7 @@ class ViewController: UIViewController {
         
         ageLabel.text = "\(Utilities.age) yrs"
         levelLabel.text  = "LVL \(Utilities.level)"
-        
-        
-      
+
         evolutionCheck()
         
     }
@@ -83,6 +78,7 @@ class ViewController: UIViewController {
         
     }
     
+    // Updates the timer function and adds poo to the stage and lowers hunger and happiness
     func updateTimer() {
         if isTimerRunning == true {
             if timerSeconds == 59 {
@@ -134,7 +130,8 @@ class ViewController: UIViewController {
         Utilities.age = Int(ageCheck)
         
         var timeDifference = -Utilities.lastOpen.timeIntervalSinceNow
-
+        
+        // Removes points from the creature and adds poos to the stage
         if timeDifference > 200 {
             // Reduce the number to a lower value.
             timeDifference = timeDifference / 30
@@ -146,14 +143,11 @@ class ViewController: UIViewController {
                 unhappyHungry()
                 addPoo(Any.self)
             }
-            
         }
-        
     }
     
     
-    
-    // IBOutlets for UI labels - 8 Happiness etc
+    // IBOutlets for UI labels
     @IBOutlet weak var happinessMeter: UILabel!
     @IBOutlet weak var hungerMeter: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
@@ -161,7 +155,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var levelLabel: UILabel!
 
     
-    // Button action to pat the creature
+    // Button action to pat the creature - love hearts will animate down the screen
     @IBAction func patBtn(_ sender: UIButton) {
         if Utilities.happiness < 100 {
             let love = UIButton(frame: CGRect(x: 200, y: 60, width: 50, height: 50))
@@ -177,7 +171,7 @@ class ViewController: UIViewController {
         
     }
     
-    // Button action to feed the creature
+    // Button action to feed the creature - food will animate down the screen
     @IBAction func feedBtn(_ sender: UIButton) {
         if Utilities.hunger < 100 {
             let food = UIButton(frame: CGRect(x: 100, y: 60, width: 50, height: 50))
@@ -193,12 +187,7 @@ class ViewController: UIViewController {
         
     }
     
-    
-    // a light switch for when the monster wants to sleep
-    @IBAction func lightBtn(_ sender: UIButton) {
-    }
-    
-    
+    // Function to randomly add the poo to the stage.
     func addPoo (_ : Any) {
         let xCoordinate = arc4random() % UInt32(self.view.bounds.width)
         
@@ -208,17 +197,17 @@ class ViewController: UIViewController {
         self.view.addSubview(poo)
         pooArray.append(poo)
         Utilities.poo += 1
-        print(Utilities.poo)
-        
-        
+       
     }
-    
+    // A btn to clear all mess fromt he stage
     @IBAction func cleanAllPoo(_ sender: UIButton) {
         for poo in pooArray {
             poo.removeFromSuperview()
         }
         Utilities.poo = 0
     }
+    
+    // Animation to remove the poo buttons
     func didCleanPoo(sender: UIButton) {
         sender.setImage(UIImage(named : "pop"), for: .normal)
         UIView.animate(withDuration: 0.4,
@@ -236,6 +225,7 @@ class ViewController: UIViewController {
     // Checks the level of the monster and what stage it should be
     func evolutionCheck() {
         
+        // Checks if the colorTrue variables, and choose the right image to display.
         switch (Utilities.level) {
             
         case 0...4:
@@ -244,6 +234,10 @@ class ViewController: UIViewController {
             }
             else if Utilities.greenTrue == true  {
                 MonsterObject.setImage(Utilities.splitEvoImages[4], for: .normal)
+                
+            }
+            else if Utilities.blueTrue == true  {
+                MonsterObject.setImage(UIImage(named: "egg"), for: .normal)
                 
             }
         case 5...9:
@@ -258,7 +252,7 @@ class ViewController: UIViewController {
                 MonsterObject.setImage(Utilities.splitEvoImages[2], for: .normal)
                 
             }
-            else {
+            else if Utilities.blueTrue == true {
                 MonsterObject.setImage(Utilities.monsterImages[1], for: .normal)
                 
             }
@@ -272,19 +266,20 @@ class ViewController: UIViewController {
                 MonsterObject.setImage(Utilities.splitEvoImages[3], for: .normal)
                 
             }
-            else  {
+            else if Utilities.blueTrue == true  {
                 MonsterObject.setImage(Utilities.monsterImages[2], for: .normal)
                 
             }
             
         default:
-            MonsterObject.setImage(UIImage(named: "egg"), for: .normal)
+            MonsterObject.setImage(UIImage(named: "poo"), for: .normal)
         }
-
+        
     }
     
     // Make a new monster
     @IBAction func STARTBtn(_ sender: UIButton) {
+        // Reset the label values
         isTimerRunning = true
         Utilities.resetDefaults()
         hungerMeter.text  = "\(Utilities.hunger)"
@@ -292,11 +287,13 @@ class ViewController: UIViewController {
         ageLabel.text = "\(Utilities.age) Yrs"
         levelLabel.text = "Lvl \(Utilities.level)"
         
+        // Clear the mess
         for poo in pooArray {
             poo.removeFromSuperview()
         }
         let colorMonster = arc4random() % UInt32(3)
         
+        // Choose a random evolustion  line.
         switch (colorMonster) {
         case 1:
             Utilities.greenTrue = true
