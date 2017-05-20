@@ -18,7 +18,9 @@ class TrainViewController: UIViewController {
     let timerSecondsMax = 19
     var timer = Timer()
 
+    @IBOutlet weak var lvlLabel: UILabel!
     
+    @IBOutlet weak var message: UILabel!
     @IBOutlet weak var hundredLabel: UILabel!
     
     @IBOutlet weak var Wall: UIButton!
@@ -28,6 +30,11 @@ class TrainViewController: UIViewController {
                      UIImage(named:"2"),
                      UIImage(named:"3"),
                      UIImage(named:"4")]
+    
+    let fireBalls = [UIImage(named:"fireballs1"),
+                      UIImage(named:"fireballs2"),
+                      UIImage(named:"fireballs3")]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +47,11 @@ class TrainViewController: UIViewController {
         animator?.addBehavior(gravity!)
         runTimer()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        lvlLabel.text = "LVL\(Utilities.level)"
+    }
+    
     @IBAction func trainTap(_ sender: UIButton) {
         hundred += 1
         hundredLabel.text = "\(hundred)"
@@ -67,26 +79,30 @@ class TrainViewController: UIViewController {
     }
     
     func isHundred() {
-        if hundred == 60 {
+        if hundred == 10 {
             
             switch (timerSeconds) {
                 case 0...10 :
                 // do this
                     Utilities.xp += 20
-                    addFireball()
+                    addFireball(fireImage: fireBalls[2]!)
                     breakWall(sender: Wall, imageIndex: brickWall[3]!)
+                    message.text = "Awesome! 20XP"
                 case 11...15:
                 // do this
                     Utilities.xp += 15
-                    addFireball()
+                    addFireball(fireImage: fireBalls[1]!)
                     breakWall(sender: Wall, imageIndex: brickWall[2]!)
+                    message.text = "Good! 15XP"
                 case 16...18:
                 // do this
-                    addFireball()
+                    addFireball(fireImage: fireBalls[0]!)
                     Utilities.xp += 10
                     breakWall(sender: Wall, imageIndex: brickWall[1]!)
+                    message.text = "Ok! 10XP"
                     default:
                         Utilities.xp -= 5
+                        message.text = "Try again! -5XP"
             }
             timerSeconds = 0
             hundred = 0
@@ -94,11 +110,11 @@ class TrainViewController: UIViewController {
         
     }
     
-    func addFireball() {
-        let love = UIButton(frame: CGRect(x: 300, y: 200, width: 50, height: 50))
-        love.setImage(UIImage(named: "heart"), for: .normal)
-        self.view.addSubview(love)
-        gravity?.addItem((love as UIView))
+    func addFireball(fireImage: UIImage) {
+        let fireball = UIButton(frame: CGRect(x: 300, y: 250, width: 50, height: 50))
+        fireball.setImage(fireImage, for: .normal)
+        self.view.addSubview(fireball)
+        gravity?.addItem((fireball as UIView))
        
         
     }
@@ -112,7 +128,9 @@ class TrainViewController: UIViewController {
         UIView.animate(withDuration: 2.0,
                        animations: {sender.alpha = 1},
                        completion: { (true) in sender.setBackgroundImage(self.brickWall[0], for: .normal)} )
-        //sender.setBackgroundImage(brickWall[0], for: .normal)
+        
     }
+    
+    
     
 }

@@ -55,11 +55,14 @@ class ViewController: UIViewController {
         
         happinessMeter.text  = "\(Utilities.happiness)"
         
-        levelLabel.text  = "\(Utilities.level)"
-        
-        for _ in 0..<Utilities.poo {
-            addPoo(Any.self)
+        if Utilities.xp >= 100 {
+            Utilities.level = Utilities.xp / 100
         }
+        
+        
+        levelLabel.text  = "LVL \(Utilities.level)"
+        
+        
      
         evolutionCheck()
         
@@ -120,8 +123,6 @@ class ViewController: UIViewController {
     // A function to find the difference between the last date accessed and the new date.
     func dateChecker() {
         
-        
-        
         var timeDifference = -Utilities.lastOpen.timeIntervalSinceNow
 
         if timeDifference > 200 {
@@ -147,22 +148,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
-    
-   
 
-    
-    // temp training game button
-    @IBAction func trainBtn(_ sender: UIButton) {
-        UIView.animate(withDuration: 1) {
-            self.MonsterObject.center = CGPoint(x: self.view.bounds.width / 2 , y: self.view.bounds.height / 2 - 100)
-            
-        }
-        
-        Utilities.level += 1
-        levelLabel.text = "lvl\(Utilities.level)"
-        evolutionCheck()
-        
-    }
     
     // Button action to pat the creature
     @IBAction func patBtn(_ sender: UIButton) {
