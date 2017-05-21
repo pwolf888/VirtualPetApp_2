@@ -62,7 +62,7 @@ class TrainViewController: UIViewController {
         isSixty()
         
         // For testing perposes
-        Utilities.level += 1
+        //Utilities.level += 1
         lvlLabel.text = "LVL\(Utilities.level)"
         evolutionCheck()
     }
@@ -92,7 +92,7 @@ class TrainViewController: UIViewController {
     
     // Checks the timing of the training minigame and what wall to break and points given out.
     func isSixty() {
-        if hundred == 10 {
+        if hundred == 60 {
             
             switch (timerSeconds) {
                 case 0...10 :
